@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Common">
+      <UniqueIdentifier>04bf43c2-f506-4d45-abcd-4b4ac6d7a53b</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets">
+      <UniqueIdentifier>2b45f66a-d416-455d-b318-65fdb9cb6215</UniqueIdentifier>
+      <Extensions>ico;cur;bmp;dds;dlg;fbx;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tga;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="StepTimer.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="DeviceResources.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Input.h" />
+    <ClInclude Include="System\Renderer.h" />
+    <ClInclude Include="System\ResourceLoader.h" />
+    <ClInclude Include="Scene\InGame.h" />
+    <ClInclude Include="Scene\BaseScene.h" />
+    <ClInclude Include="Scene\LobbyScene.h" />
+    <ClInclude Include="System\Server.h" />
+    <ClInclude Include="Handler\BaseHandler.h" />
+    <ClInclude Include="Handler\Common\ReqLogin.h" />
+    <ClInclude Include="Handler\InGame\ReqGameInput.h" />
+    <ClInclude Include="Handler\InGame\ReqGameStart.h" />
+    <ClInclude Include="Handler\Room\ReqRoomCreate.h" />
+    <ClInclude Include="Handler\Room\ReqRoomEnter.h" />
+    <ClInclude Include="Handler\Room\ReqRoomLeave.h" />
+    <ClInclude Include="Handler\Room\ReqRoomList.h" />
+    <ClInclude Include="Handler\Handler.h" />
+    <ClInclude Include="Game\Button.h" />
+    <ClInclude Include="Game\RoomButton.h" />
+    <ClInclude Include="Game\ButtonText.h" />
+    <ClInclude Include="Handler\InGame\ReqFallingBlock.h" />
+    <ClInclude Include="Handler\Room\ReqRoomCanEnter.h" />
+    <ClInclude Include="Handler\InGame\ReqGameStop.h" />
+    <ClInclude Include="Game\GameStartButton.h" />
+    <ClInclude Include="Game\GameLeaveButton.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="DeviceResources.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Input.cpp" />
+    <ClCompile Include="System\ResourceLoader.cpp" />
+    <ClCompile Include="System\Renderer.cpp" />
+    <ClCompile Include="Scene\BaseScene.cpp" />
+    <ClCompile Include="Scene\InGame.cpp" />
+    <ClCompile Include="Scene\LobbyScene.cpp" />
+    <ClCompile Include="Handler\Common\ReqLogin.cpp" />
+    <ClCompile Include="System\Server.cpp" />
+    <ClCompile Include="Game\RoomButton.cpp" />
+    <ClCompile Include="Game\GameStartButton.cpp" />
+    <ClCompile Include="Game\GameLeaveButton.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="resource.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="directx.ico">
+      <Filter>Assets</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Manifest Include="settings.manifest">
+      <Filter>Assets</Filter>
+    </Manifest>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>
