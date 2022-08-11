@@ -2,14 +2,14 @@
 
 const int MAX_LOG_SIZE = 1024;
 
-void Logger::Debug(const std::string& message) const
+void SBNet::Logger::Debug(const std::string& message) const
 {
 #ifdef _DEBUG
 	category.debug(message);
 #endif
 }
 
-void Logger::Info(const std::string& message) const
+void SBNet::Logger::Info(const std::string& message) const
 {
 	if (IsValidLogSize(message))
 	{
@@ -21,7 +21,7 @@ void Logger::Info(const std::string& message) const
 	}
 }
 
-void Logger::Warn(const std::string& message) const
+void SBNet::Logger::Warn(const std::string& message) const
 {
 	if (IsValidLogSize(message))
 	{
@@ -33,7 +33,7 @@ void Logger::Warn(const std::string& message) const
 	}
 }
 
-void Logger::Error(const std::string& message) const
+void SBNet::Logger::Error(const std::string& message) const
 {
 	if (IsValidLogSize(message))
 	{
@@ -45,7 +45,7 @@ void Logger::Error(const std::string& message) const
 	}
 }
 
-void Logger::Fatal(const std::string& message) const
+void SBNet::Logger::Fatal(const std::string& message) const
 {
 	if (IsValidLogSize(message))
 	{
@@ -57,7 +57,7 @@ void Logger::Fatal(const std::string& message) const
 	}
 }
 
-void Logger::Debug(const char* stringFormat, ...) const
+void SBNet::Logger::Debug(const char* stringFormat, ...) const
 {
 #ifdef _DEBUG
 	va_list args;
@@ -68,7 +68,7 @@ void Logger::Debug(const char* stringFormat, ...) const
 #endif
 }
 
-void Logger::Info(const char* stringFormat, ...) const
+void SBNet::Logger::Info(const char* stringFormat, ...) const
 {
 	va_list args;
 	va_start(args, stringFormat);
@@ -77,7 +77,7 @@ void Logger::Info(const char* stringFormat, ...) const
 	Info(message);
 }
 
-void Logger::Warn(const char* stringFormat, ...) const
+void SBNet::Logger::Warn(const char* stringFormat, ...) const
 {
 	va_list args;
 	va_start(args, stringFormat);
@@ -86,7 +86,7 @@ void Logger::Warn(const char* stringFormat, ...) const
 	Warn(message);
 }
 
-void Logger::Error(const char* stringFormat, ...) const
+void SBNet::Logger::Error(const char* stringFormat, ...) const
 {
 	va_list args;
 	va_start(args, stringFormat);
@@ -95,7 +95,7 @@ void Logger::Error(const char* stringFormat, ...) const
 	Error(message);
 }
 
-void Logger::Fatal(const char* stringFormat, ...) const
+void SBNet::Logger::Fatal(const char* stringFormat, ...) const
 {
 	va_list args;
 	va_start(args, stringFormat);
@@ -104,12 +104,12 @@ void Logger::Fatal(const char* stringFormat, ...) const
 	Fatal(message);
 }
 
-bool Logger::IsValidLogSize(const std::string& message) const
+bool SBNet::Logger::IsValidLogSize(const std::string& message) const
 {
 	return MAX_LOG_SIZE > message.length();
 }
 
-const std::string Logger::MakeStringFormat(const char* stringFormat, va_list args) const
+const std::string SBNet::Logger::MakeStringFormat(const char* stringFormat, va_list args) const
 {
 	char buf[MAX_LOG_SIZE] = { 0, };
 

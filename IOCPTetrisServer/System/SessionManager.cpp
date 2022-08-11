@@ -3,7 +3,7 @@
 //#include "../Game/Player.h"
 //#include "ClientInfo.h"
 
-void SessionManager::AddSession(Player* playerInfo, ClientInfo* clientInfo)
+void SessionManager::AddSession(Player* playerInfo, SBNet::ClientInfo* clientInfo)
 {
 	for (auto& i : sessions)
 	{

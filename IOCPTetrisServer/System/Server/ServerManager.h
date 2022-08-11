@@ -32,7 +32,7 @@ namespace SBNet
 	private:
 		bool isRun = false;
 		std::vector < SBNet::IServer* > servers;
-		const Logger& logger = Logger("ServerFactory");
+		const SBNet::Logger& logger = Logger("ServerFactory");
 	};
 }
 

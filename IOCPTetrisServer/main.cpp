@@ -7,9 +7,9 @@
 
 int main(int argc, char** argv)
 {
-	Logger::LoadConfig();
+	SBNet::Logger::LoadConfig();
 
-	Logger main("main");
+	SBNet::Logger main("main");
 	main.Info("server start");
 
 	SBNet::ServerConfig config;
@@ -38,7 +38,7 @@ int main(int argc, char** argv)
 
 	// server end
 	serverManager.Shutdown();
-	Logger::Shutdown();
+	SBNet::Logger::Shutdown();
 	main.Info("server end");
 	return 0;
 }

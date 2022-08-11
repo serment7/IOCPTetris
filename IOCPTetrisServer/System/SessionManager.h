@@ -6,11 +6,13 @@
 #include "ClientInfo.h"
 #include "../Util/Logger.h"
 
+using namespace IOCPTetris;
+
 class SessionManager
 {
 public:
 
-	void AddSession(Player* playerInfo, ClientInfo* clientInfo);
+	void AddSession(Player* playerInfo, SBNet::ClientInfo* clientInfo);
 
 	void RemoveSession(int sessionIndex);
 
@@ -52,5 +54,5 @@ public:
 
 private:
 	std::vector<Session*> sessions;
-	Logger logger;
+	SBNet::Logger logger;
 };

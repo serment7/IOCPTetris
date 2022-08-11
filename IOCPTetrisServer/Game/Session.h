@@ -1,21 +1,28 @@
 #pragma once
 
 class Player;
-class ClientInfo;
-
-class Session
+namespace SBNet
 {
-public:
-	Session(int _sessionIndex, Player* _playerInfo, ClientInfo* _clientInfo);
+	class ClientInfo;
+}
 
-	void SetSesssion(Player* _playerInfo, ClientInfo* _clientInfo);
+namespace IOCPTetris
+{
+	class Session
+	{
+	public:
+		Session(int _sessionIndex, Player* _playerInfo, SBNet::ClientInfo* _clientInfo);
 
-	bool IsUse();
+		void SetSesssion(Player* _playerInfo, SBNet::ClientInfo* _clientInfo);
 
-	void CloseSession();
+		bool IsUse();
 
-	Player* playerInfo = nullptr;
-	ClientInfo* clientInfo = nullptr;
-	int sessionIndex = 0;
-	bool isUse = false;
-};
+		void CloseSession();
+
+		Player* playerInfo = nullptr;
+		SBNet::ClientInfo* clientInfo = nullptr;
+		int sessionIndex = 0;
+		bool isUse = false;
+	};
+
+}

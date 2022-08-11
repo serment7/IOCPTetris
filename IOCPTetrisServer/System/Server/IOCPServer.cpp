@@ -86,7 +86,7 @@ void SBNet::IOCPServer::Shutdown()
 	WSACleanup();
 }
 
-ClientInfo* SBNet::IOCPServer::FindEmptyClientInfo()
+SBNet::ClientInfo* SBNet::IOCPServer::FindEmptyClientInfo()
 {
 	for (int i = 0; i < clientInfos.size(); ++i)
 	{
@@ -98,7 +98,7 @@ ClientInfo* SBNet::IOCPServer::FindEmptyClientInfo()
 	return nullptr;
 }
 
-ClientInfo* SBNet::IOCPServer::FindClientInfo(int clientIndex)
+SBNet::ClientInfo* SBNet::IOCPServer::FindClientInfo(int clientIndex)
 {
 	for (int i = 0; i < clientInfos.size(); ++i)
 	{

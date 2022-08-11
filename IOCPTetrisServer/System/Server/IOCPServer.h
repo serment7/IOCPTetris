@@ -8,10 +8,11 @@
 #include <thread>
 #include <cassert>
 
-class ClientInfo;
-
 namespace SBNet
 {
+
+	class ClientInfo;
+
 	class IOCPServer : public IServer
 	{
 	public:
@@ -45,7 +46,7 @@ namespace SBNet
 		virtual void OnReceive(const UINT32 clientIndex, const UINT32 recvSize, char* recvData) = 0;
 
 	protected:
-		Logger logger;
+		SBNet::Logger logger;
 
 	private:
 		virtual void ProcessThread() = 0;

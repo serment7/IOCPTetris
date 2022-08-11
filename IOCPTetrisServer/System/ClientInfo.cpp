@@ -1,45 +1,45 @@
 #include "ClientInfo.h"
 #include "../../IOCPTetrisCommon/Packet.hh"
 
-ClientInfo::ClientInfo()
+SBNet::ClientInfo::ClientInfo()
 {
 	ZeroMemory(&mRecvOverlappedEx, sizeof(Packet::OverlappedEx));
 
-	packetBuffer = std::make_unique<PacketBuffer>();
+	packetBuffer = std::make_unique<SBNet::PacketBuffer>();
 	packetBuffer->Init(1024, sizeof(Packet::PACKET_HEADER));
 }
 
-void ClientInfo::Init(const UINT32 index, HANDLE iocpHandle_)
+void SBNet::ClientInfo::Init(const UINT32 index, HANDLE iocpHandle_)
 {
 	clientIndex = index;
 	mIOCPHandle = iocpHandle_;
 }
 
-UINT32 ClientInfo::GetClientIndex() {
+UINT32 SBNet::ClientInfo::GetClientIndex() {
 	return clientIndex;
 }
 
-UINT32 ClientInfo::GetSessionIndex() {
+UINT32 SBNet::ClientInfo::GetSessionIndex() {
 	return sessionIndex;
 }
 
-bool ClientInfo::IsConnect() {
+bool SBNet::ClientInfo::IsConnect() {
 	return mIsConnect == 1;
 }
 
-SOCKET ClientInfo::GetSock() {
+SOCKET SBNet::ClientInfo::GetSock() {
 	return sock;
 }
 
-UINT64 ClientInfo::GetLatestClosedTimeSec() {
+UINT64 SBNet::ClientInfo::GetLatestClosedTimeSec() {
 	return mLatestClosedTimeSec;
 }
 
-char* ClientInfo::RecvBuffer() {
+char* SBNet::ClientInfo::RecvBuffer() {
 	return mRecvBuf;
 }
 
-bool ClientInfo::Connect(HANDLE iocpHandle_, SOCKET socket_)
+bool SBNet::ClientInfo::Connect(HANDLE iocpHandle_, SOCKET socket_)
 {
 	sock = socket_;
 	mIsConnect = 1;
@@ -54,7 +54,7 @@ bool ClientInfo::Connect(HANDLE iocpHandle_, SOCKET socket_)
 	return BindRecv();
 }
 
-void ClientInfo::Disconnect(bool bIsForce)
+void SBNet::ClientInfo::Disconnect(bool bIsForce)
 {
 	struct linger stLinger = { 0, 0 };
 
@@ -74,11 +74,11 @@ void ClientInfo::Disconnect(bool bIsForce)
 	sock = INVALID_SOCKET;
 }
 
-void ClientInfo::Clear()
+void SBNet::ClientInfo::Clear()
 {
 }
 
-bool ClientInfo::PostAccept(SOCKET listenSock_, const UINT64 curTimeSec_)
+bool SBNet::ClientInfo::PostAccept(SOCKET listenSock_, const UINT64 curTimeSec_)
 {
 	mLatestClosedTimeSec = UINT32_MAX;
 
@@ -114,7 +114,7 @@ bool ClientInfo::PostAccept(SOCKET listenSock_, const UINT64 curTimeSec_)
 	return true;
 }
 
-bool ClientInfo::AcceptCompletion()
+bool SBNet::ClientInfo::AcceptCompletion()
 {
 	if (Connect(mIOCPHandle, sock) == false)
 	{
@@ -129,7 +129,7 @@ bool ClientInfo::AcceptCompletion()
 	return true;
 }
 
-bool ClientInfo::BindIOCompletionPort(HANDLE iocpHandle_)
+bool SBNet::ClientInfo::BindIOCompletionPort(HANDLE iocpHandle_)
 {
 	auto hIOCP = CreateIoCompletionPort((HANDLE)GetSock()
 		, iocpHandle_
@@ -144,7 +144,7 @@ bool ClientInfo::BindIOCompletionPort(HANDLE iocpHandle_)
 	return true;
 }
 
-bool ClientInfo::BindRecv()
+bool SBNet::ClientInfo::BindRecv()
 {
 	DWORD dwFlag = 0;
 	DWORD dwRecvNumBytes = 0;
@@ -170,7 +170,7 @@ bool ClientInfo::BindRecv()
 	return true;
 }
 
-bool ClientInfo::SendMsg(const UINT32 dataSize_, char* pMsg_, Packet::IOOperation operation)
+bool SBNet::ClientInfo::SendMsg(const UINT32 dataSize_, char* pMsg_, Packet::IOOperation operation)
 {
 	auto* sendOverlappedEx = new Packet::OverlappedEx;
 	ZeroMemory(sendOverlappedEx, sizeof(Packet::OverlappedEx));
@@ -192,7 +192,7 @@ bool ClientInfo::SendMsg(const UINT32 dataSize_, char* pMsg_, Packet::IOOperatio
 	return true;
 }
 
-void ClientInfo::SendCompleted(const UINT32 dataSize_)
+void SBNet::ClientInfo::SendCompleted(const UINT32 dataSize_)
 {
 	std::lock_guard<std::mutex> guard(mSendLock);
 
@@ -208,7 +208,7 @@ void ClientInfo::SendCompleted(const UINT32 dataSize_)
 	}
 }
 
-bool ClientInfo::SendIO(Packet::OverlappedEx* sendOverlappedEx)
+bool SBNet::ClientInfo::SendIO(Packet::OverlappedEx* sendOverlappedEx)
 {
 	DWORD dwRecvNumBytes = 0;
 	int nRet = WSASend(sock,
@@ -228,7 +228,7 @@ bool ClientInfo::SendIO(Packet::OverlappedEx* sendOverlappedEx)
 	return true;
 }
 
-bool ClientInfo::SetSocketOption()
+bool SBNet::ClientInfo::SetSocketOption()
 {
 	/*if (SOCKET_ERROR == setsockopt(mSock, SOL_SOCKET, SO_UPDATE_ACCEPT_CONTEXT, (char*)GIocpManager->GetListenSocket(), sizeof(SOCKET)))
 	{

@@ -51,7 +51,7 @@ private:
 	std::deque<Packet::PacketInfo*> recvPacketQeueu;
 	std::deque<Packet::PacketInfo*> sendPacketQeueu;
 	bool isRun = false;
-	Logger logger;
+	SBNet::Logger logger;
 	
 	std::mutex recvQueueGuard, sendQueueGuard;
 };

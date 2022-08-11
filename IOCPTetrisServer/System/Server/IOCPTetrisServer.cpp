@@ -5,7 +5,7 @@
 
 using namespace Packet;
 
-void IOCPTetris::IOCPTetrisServer::OnConnect(ClientInfo* clientInfo)
+void IOCPTetris::IOCPTetrisServer::OnConnect(SBNet::ClientInfo* clientInfo)
 {
 	logger.Info("OnConnect");
 	auto* newPlayer = Game::Get()->playerManager->GetEmptyPlayer();
@@ -39,7 +39,7 @@ IOCPTetris::IOCPTetrisServer::IOCPTetrisServer()
 	packetManager = std::make_unique<PacketManager>();
 	packetManager->Init();
 	packetManager->SendPacketFunc = [&](INT32 sessionIndex, char* pData, INT16 size) {
-		ClientInfo* clientInfo = Game::Get()->sessionManager->FindSession(sessionIndex)->clientInfo;
+		SBNet::ClientInfo* clientInfo = Game::Get()->sessionManager->FindSession(sessionIndex)->clientInfo;
 		assert(clientInfo != nullptr);
 		clientInfo->SendMsg(size, pData);
 	};

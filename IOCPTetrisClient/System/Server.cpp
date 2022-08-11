@@ -338,7 +338,7 @@ Server::Server()
 	int result = WSAStartup(MAKEWORD(2, 2), &wsaData);
 	assert(result == 0);
 
-	packetBuffer = std::make_unique<PacketBuffer>();
+	packetBuffer = std::make_unique<SBNet::PacketBuffer>();
 	packetBuffer->Init(20000, sizeof(Packet::PACKET_HEADER));
 
 	handleIocp = CreateIoCompletionPort(INVALID_HANDLE_VALUE, NULL, 0, 1);

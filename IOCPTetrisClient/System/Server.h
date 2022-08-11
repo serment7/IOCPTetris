@@ -125,7 +125,7 @@ private:
 	};
 
 	SOCKET sockServer = INVALID_SOCKET;
-	std::unique_ptr<PacketBuffer> packetBuffer;
+	std::unique_ptr<SBNet::PacketBuffer> packetBuffer;
 	std::thread recvThread, sendThread, handlerThread;
 	std::queue<Packet::PacketInfo> sendPacketQueue;
 	std::mutex sendLock, sockLock, packetBufferLock, handlerLock, syncLock;

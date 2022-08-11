@@ -13,7 +13,7 @@ namespace IOCPTetris
 	{
 	public:
 		// IOCPServer을(를) 통해 상속됨
-		virtual void OnConnect(ClientInfo* clientInfo) override;
+		virtual void OnConnect(SBNet::ClientInfo* clientInfo) override;
 		virtual void OnClose(const UINT32 clientIndex) override;
 		virtual void OnReceive(const UINT32 clientIndex, const UINT32 recvSize, char* recvData) override;
 
